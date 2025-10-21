@@ -1,5 +1,6 @@
 import { projects } from '@/data/projects';
 import { SkillCanvas } from '@/app/components/SkillCanvas';
+import Image from 'next/image';
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -39,7 +40,21 @@ export default function HomePage() {
                 Full-Stack Developer & System Thinker
               </h2>
               <p className="mt-8 text-base md:text-lg leading-relaxed md:leading-8 max-w-lg">
-                Crafting robust and scalable web applications. My approach is rooted in clarity, structure, and a relentless focus on solving the right problem. Leveraging this approach in remote-first environments, I am looking for new remote or hybrid-flexible challenges
+                I build robust and scalable web applications with a system thinker&apos;s approach. By grounding my work in 
+                <span
+                  className="px-2 py-1 rounded-md mx-1"
+                  style={{ backgroundColor: 'var(--color-accent)' }}
+                >
+                  clarity
+                </span> 
+                and 
+                <span
+                  className="px-2 py-1 rounded-md mx-1"
+                  style={{ backgroundColor: 'var(--color-accent)', opacity: 0.7 }}
+                >
+                  structure
+                </span>
+                , I solve core business problems effectively. Actively seeking challenging remote-first opportunities.
               </p>
             </div>
             <div className="w-full">
@@ -54,11 +69,34 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24">
             {projects.map((project) => (
               <div key={project.id} className="group flex flex-col">
+                <div className="relative aspect-video overflow-hidden rounded-md" style={{ backgroundColor: 'var(--color-light-gray)' }}>
+                  <Image
+                    src={project.imageUrl} 
+                    alt={project.title}
+                    width={800}
+                    height={450}
+                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-ink opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex gap-4">
+                      {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-canvas bg-ink/50 px-4 py-2 rounded-md text-sm hover:bg-accent hover:text-ink">View Live</a>}
+                      {project.sourceUrl && <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-canvas bg-ink/50 px-4 py-2 rounded-md text-sm hover:bg-accent hover:text-ink">View Code</a>}
+                    </div>
+                  </div>
+                </div>
                 <div className="flex-grow mt-6">
                   <h4 className="font-heading text-xl font-bold">{project.title}</h4>
                   <p className="mt-2 text-base" style={{ color: 'var(--color-ink)', opacity: 0.7 }}>
                     {project.description}
                   </p>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-xs px-3 py-1 rounded-full" style={{ backgroundColor: 'var(--color-accent)', opacity: 0.7 }}>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
@@ -74,13 +112,14 @@ export default function HomePage() {
             <div className="relative w-32 md:w-48 mb-12">
               <div 
                 className="aspect-square w-full border overflow-hidden"
-                style={{ 
-                  borderColor: 'var(--color-ink)',
-                }}
+                style={{ borderColor: 'var(--color-ink)' }}
               >
-                <img 
+                <Image 
                   src="https://avatars.githubusercontent.com/u/224547541?s=400&u=b93dda65a22ed6d553af8178b06231657b8b06fb&v=4" 
                   alt="Portrait of Chakron Yuraket" 
+                  width={200}
+                  height={200}
+                  className="w-full h-full object-cover grayscale"
                 />
               </div>
               <div 
@@ -91,8 +130,8 @@ export default function HomePage() {
               </div>
             </div>
             <div className="space-y-6 text-base md:text-lg leading-relaxed" style={{ color: 'var(--color-ink)', opacity: 0.9 }}>
-                <p>I am Chakron Yuraket (First), a self-taught Full-Stack Developer from Samut Songkhram. My starting point wasn't a school, but a simple question: 'How does this work?' This core curiosity, combined with a desire to build complex systems from the ground up, defines my approach. I am driven by a commitment to deeply understand technology, from its fundamental principles to advanced concepts in system architecture and AI</p>
-                <p>I operate on the principle of ‘Clarity, Structure, and a relentless focus on solving the right problem.’ My code must be readable, maintainable, and part of a scalable architecture. I don’t believe in superficial fixes; I am wired to identify the root cause of a problem. This Full-Stack expertise allows me to maintain a high-level, holistic view of any system, ensuring all parts work in harmony. I am at my best when tackling complex challenges that demand intelligent and efficient solutions</p>
+                <p>I am Chakron Yuraket (First), a self-taught Full-Stack Developer from Samut Songkhram Thailand My starting point wasn&apos;t a school, but a simple question: &apos;How does this work?&apos; This core curiosity, combined with a desire to build complex systems from the ground up, defines my approach. I am driven by a commitment to deeply understand technology, from its fundamental principles to advanced concepts in system architecture and AI</p>
+                <p>I operate on the principle of &apos;Clarity, Structure, and a relentless focus on solving the right problem.&apos; My code must be readable, maintainable, and part of a scalable architecture. I don&apos;t believe in superficial fixes; I am wired to identify the root cause of a problem. This Full-Stack expertise allows me to maintain a high-level, holistic view of any system, ensuring all parts work in harmony. I am at my best when tackling complex challenges that demand intelligent and efficient solutions</p>
             </div>
           </div>
         </section>
@@ -104,7 +143,7 @@ export default function HomePage() {
               Have a project in mind or just want to say hello?
             </h2>
             <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto" style={{ color: 'var(--color-ink)', opacity: 0.7 }}>
-              My inbox is always open. I'll get back to you as soon as possible
+              My inbox is always open. I&apos;ll get back to you as soon as possible.
             </p>
             <a 
               href="mailto:chakronwork@gmail.com" 
