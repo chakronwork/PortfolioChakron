@@ -104,37 +104,37 @@ export default function HomePage() {
         </section>
 
         {/* ===== ABOUT SECTION ===== */}
-        <section id="about" className="py-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start">
-          <div className="md:col-span-1">
-            <SectionTitle>About Me</SectionTitle>
-          </div>
-          <div className="md:col-span-2">
-            <div className="relative w-32 md:w-48 mb-12">
-              <div 
-                className="aspect-square w-full border overflow-hidden"
-                style={{ borderColor: 'var(--color-ink)' }}
-              >
-                <Image 
-                  src="\portfolio\public\images\1.png" 
-                  alt="Portrait of Chakron Yuraket" 
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-cover grayscale"
-                />
-              </div>
-              <div 
-                className="font-heading absolute -bottom-5 -right-2 text-xs font-semibold uppercase tracking-wider"
-                style={{ color: 'var(--color-ink)', opacity: 0.7 }}
-              >
-                [ Portrait / C. Yuraket ]
-              </div>
-            </div>
-            <div className="space-y-6 text-base md:text-lg leading-relaxed" style={{ color: 'var(--color-ink)', opacity: 0.9 }}>
-                <p>I am Chakron Yuraket (First), a self-taught Full-Stack Developer from Samut Songkhram Thailand My starting point wasn&apos;t a school, but a simple question: &apos;How does this work?&apos; This core curiosity, combined with a desire to build complex systems from the ground up, defines my approach. I am driven by a commitment to deeply understand technology, from its fundamental principles to advanced concepts in system architecture and AI</p>
-                <p>I operate on the principle of &apos;Clarity, Structure, and a relentless focus on solving the right problem.&apos; My code must be readable, maintainable, and part of a scalable architecture. I don&apos;t believe in superficial fixes; I am wired to identify the root cause of a problem. This Full-Stack expertise allows me to maintain a high-level, holistic view of any system, ensuring all parts work in harmony. I am at my best when tackling complex challenges that demand intelligent and efficient solutions</p>
-            </div>
-          </div>
-        </section>
+<section id="about" className="py-24 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 items-start">
+  <div className="md:col-span-1">
+    <SectionTitle>About Me</SectionTitle>
+  </div>
+  <div className="md:col-span-2">
+    <div className="relative w-32 md:w-48 mb-12">
+      <div 
+        className="aspect-square w-full border overflow-hidden"
+        style={{ borderColor: 'var(--color-ink)' }}
+      >
+        <Image 
+          src="/images/1.png" 
+          alt="Portrait of Chakron Yuraket" 
+          width={200}
+          height={200}
+          className="w-full h-full object-cover grayscale"
+        />
+      </div>
+      <div 
+        className="font-heading absolute -bottom-5 -right-2 text-xs font-semibold uppercase tracking-wider"
+        style={{ color: 'var(--color-ink)', opacity: 0.7 }}
+      >
+        [ Portrait / C. Yuraket ]
+      </div>
+    </div>
+    <div className="space-y-6 text-base md:text-lg leading-relaxed" style={{ color: 'var(--color-ink)', opacity: 0.9 }}>
+        <p>I am Chakron Yuraket (First), a self-taught Full-Stack Developer from Samut Songkhram Thailand My starting point wasn&apos;t a school, but a simple question: &apos;How does this work?&apos; This core curiosity, combined with a desire to build complex systems from the ground up, defines my approach. I am driven by a commitment to deeply understand technology, from its fundamental principles to advanced concepts in system architecture and AI</p>
+        <p>I operate on the principle of &apos;Clarity, Structure, and a relentless focus on solving the right problem.&apos; My code must be readable, maintainable, and part of a scalable architecture. I don&apos;t believe in superficial fixes; I am wired to identify the root cause of a problem. This Full-Stack expertise allows me to maintain a high-level, holistic view of any system, ensuring all parts work in harmony. I am at my best when tackling complex challenges that demand intelligent and efficient solutions</p>
+    </div>
+  </div>
+</section>
 
         {/* ===== CONTACT SECTION ===== */}
         <section id="contact" className="py-24 text-center">
