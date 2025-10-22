@@ -115,7 +115,7 @@ export default function HomePage() {
                 style={{ borderColor: 'var(--color-ink)' }}
               >
                 <Image 
-                  src="https://avatars.githubusercontent.com/u/224547541?s=400&u=b93dda65a22ed6d553af8178b06231657b8b06fb&v=4" 
+                  src="https://i.postimg.cc/tRFPWsYm/image.png" 
                   alt="Portrait of Chakron Yuraket" 
                   width={200}
                   height={200}
