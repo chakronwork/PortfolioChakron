@@ -119,7 +119,6 @@ export default function HomePage() {
           alt="Portrait of Chakron Yuraket" 
           width={200}
           height={200}
-          className="w-full h-full object-cover grayscale"
         />
       </div>
       <div 
