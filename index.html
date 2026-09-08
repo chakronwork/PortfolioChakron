@@ -7,20 +7,24 @@
 <meta name="description" content="Chakron Yuraket — Software Developer Portfolio">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --color-primary:#0F172A;
-    --color-secondary:#334155;
-    --color-accent:#0369A1;
-    --color-bg:#F8FAFC;
-    --color-surface:#FFFFFF;
-    --color-fg:#0F172A;
-    --color-muted:#475569;
-    --color-border:#E2E8F0;
-    --color-border-strong:#CBD5E1;
-    --color-ring:#0F172A;
-    --font-heading:'Inter','Noto Sans Thai',sans-serif;
+    --bg:#FFFEFB;
+    --surface:#FFFFFF;
+    --ink:#171923;
+    --muted:#5C6370;
+    --line:#E7E4DD;
+    --ring:#171923;
+
+    --pink:#E1447D;   /* client-facing web products */
+    --amber:#DB9A1F;  /* tools / desktop apps */
+    --teal:#0E8C82;   /* systems / OS-level work */
+    --indigo:#5B4FD1; /* low-level / kernel work */
+    --blue:#2472C8;   /* marketplaces / e-commerce */
+    --slate:#5C6370;  /* C / C++ / foundational */
+
+    --font-display:'Space Grotesk','Noto Sans Thai',sans-serif;
     --font-body:'Inter','Noto Sans Thai',sans-serif;
     --font-mono:'IBM Plex Mono',monospace;
     --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px; --space-5:48px; --space-6:64px; --space-7:96px;
@@ -28,7 +32,7 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--color-bg); color:var(--color-fg);
+    background:var(--bg); color:var(--ink);
     font-family:var(--font-body); font-size:16px; line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
@@ -42,103 +46,145 @@
   .container{max-width:960px; margin:0 auto; padding:0 var(--space-3);}
 
   header{
-    position:sticky; top:0; z-index:50; background:rgba(248,250,252,0.92);
-    backdrop-filter:blur(8px); border-bottom:1px solid var(--color-border);
+    position:sticky; top:0; z-index:50; background:rgba(255,254,251,0.94);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:var(--space-2) 0;}
-  .logo{font-family:var(--font-heading); font-weight:700; font-size:1.05rem; letter-spacing:-0.01em;}
-  .logo .dot{color:var(--color-accent);}
+  .logo{font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:-0.01em;}
+  .logo .dot{color:var(--pink);}
   .nav-links{display:flex; gap:var(--space-4); align-items:center;}
-  .nav-links a{font-size:0.92rem; font-weight:500; color:var(--color-muted); transition:color 200ms ease; padding:6px 2px;}
-  .nav-links a:hover,.nav-links a:focus-visible{color:var(--color-primary);}
-  .nav-links a:focus-visible{outline:2px solid var(--color-ring); outline-offset:4px; border-radius:4px;}
+  .nav-links a{
+    font-size:0.92rem; font-weight:500; color:var(--muted);
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:color 180ms ease, border-color 180ms ease;
+  }
+  .nav-links a:nth-child(1) a:hover{border-color:var(--pink);}
+  .nav-links li:nth-child(1) a:hover{color:var(--ink); border-color:var(--pink);}
+  .nav-links li:nth-child(2) a:hover{color:var(--ink); border-color:var(--amber);}
+  .nav-links li:nth-child(3) a:hover{color:var(--ink); border-color:var(--teal);}
+  .nav-links li:nth-child(4) a:hover{color:var(--ink); border-color:var(--blue);}
+  .nav-links a:focus-visible{outline:2px solid var(--ring); outline-offset:4px; border-radius:2px;}
 
-  .lang-toggle{display:flex; background:var(--color-surface); border:1px solid var(--color-border-strong); border-radius:8px; padding:2px; gap:2px;}
+  .lang-toggle{display:flex; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:2px; gap:2px;}
   .lang-toggle button{
     font-family:var(--font-body); font-weight:600; font-size:0.78rem; padding:6px 13px;
-    border:none; border-radius:6px; background:transparent; color:var(--color-muted); cursor:pointer;
-    min-height:32px; transition:background 200ms ease, color 200ms ease;
+    border:none; border-radius:6px; background:transparent; color:var(--muted); cursor:pointer;
+    min-height:32px; transition:background 180ms ease, color 180ms ease;
   }
-  .lang-toggle button.active{background:var(--color-primary); color:#fff;}
-  .lang-toggle button:focus-visible{outline:2px solid var(--color-ring); outline-offset:2px;}
+  .lang-toggle button.active{background:var(--ink); color:#fff;}
+  .lang-toggle button:focus-visible{outline:2px solid var(--ring); outline-offset:2px;}
 
-  .menu-btn{display:none; background:none; border:none; color:var(--color-fg); cursor:pointer; min-width:44px; min-height:44px;}
+  .menu-btn{display:none; background:none; border:none; color:var(--ink); cursor:pointer; min-width:44px; min-height:44px;}
 
-  .hero{padding:var(--space-6) 0 var(--space-5); border-bottom:1px solid var(--color-border);}
+  /* ── Hero ─────────────────────────────────────── */
+  .hero{padding:var(--space-6) 0 var(--space-5); border-bottom:1px solid var(--line);}
   .kicker{
-    font-family:var(--font-mono); font-size:0.8rem; font-weight:500; color:var(--color-accent);
-    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-2);
+    font-size:0.9rem; font-weight:600; color:var(--pink); margin-bottom:var(--space-2);
   }
   h1{
-    font-family:var(--font-heading); font-weight:700; font-size:clamp(1.9rem,4vw,2.6rem);
-    line-height:1.25; letter-spacing:-0.01em; margin-bottom:var(--space-2); max-width:22ch;
+    font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,4.4vw,2.9rem);
+    line-height:1.15; letter-spacing:-0.01em; margin-bottom:var(--space-2); max-width:22ch;
   }
-  .hero-desc{color:var(--color-muted); font-size:1.05rem; max-width:62ch; margin-bottom:var(--space-3);}
-  .btn-row{display:flex; gap:var(--space-2); flex-wrap:wrap;}
+  .hero-desc{color:var(--muted); font-size:1.05rem; max-width:60ch; margin-bottom:var(--space-4);}
+  .btn-row{display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:var(--space-5);}
   .btn{
     display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:0.92rem;
     padding:11px 20px; border-radius:8px; cursor:pointer; min-height:44px;
     transition:background 180ms ease, border-color 180ms ease, color 180ms ease;
     border:1px solid transparent;
   }
-  .btn:focus-visible{outline:2px solid var(--color-ring); outline-offset:2px;}
-  .btn-primary{background:var(--color-primary); color:#fff;}
-  .btn-primary:hover{background:#1E293B;}
-  .btn-outline{background:transparent; border-color:var(--color-border-strong); color:var(--color-primary);}
-  .btn-outline:hover{border-color:var(--color-primary); background:#F1F5F9;}
+  .btn:focus-visible{outline:2px solid var(--ring); outline-offset:2px;}
+  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary:hover{background:var(--pink);}
+  .btn-outline{background:transparent; border-color:var(--line); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink);}
 
-  section{padding:var(--space-6) 0; border-bottom:1px solid var(--color-border);}
+  /* Language-mix bar: a real content device, not decoration */
+  .stackbar-label{font-size:0.85rem; color:var(--muted); margin-bottom:10px;}
+  .stackbar{display:flex; width:100%; height:10px; border-radius:5px; overflow:hidden; margin-bottom:12px;}
+  .stackbar span{height:100%;}
+  .stackbar-legend{display:flex; flex-wrap:wrap; gap:14px; font-size:0.85rem; color:var(--muted);}
+  .stackbar-legend .chip{display:inline-flex; align-items:center; gap:6px;}
+  .stackbar-legend .swatch{width:9px; height:9px; border-radius:2px; display:inline-block;}
+
+  /* ── Sections ─────────────────────────────────── */
+  section{padding:var(--space-6) 0; border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
   .section-head{margin-bottom:var(--space-4);}
-  .section-tag{font-family:var(--font-mono); font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-accent); margin-bottom:8px;}
-  h2{font-family:var(--font-heading); font-weight:700; font-size:clamp(1.4rem,3vw,1.85rem); letter-spacing:-0.01em;}
+  .section-tag{font-size:0.85rem; font-weight:600; margin-bottom:8px;}
+  h2{font-family:var(--font-display); font-weight:700; font-size:clamp(1.5rem,3vw,1.95rem); letter-spacing:-0.01em;}
 
+  /* ── Project cards ────────────────────────────── */
   .project-card{
-    background:var(--color-surface); border:1px solid var(--color-border); border-radius:12px;
-    padding:var(--space-4); margin-bottom:var(--space-3);
+    background:var(--surface); border:1px solid var(--line); border-top-width:4px;
+    border-radius:10px; padding:var(--space-4); margin-bottom:var(--space-3);
   }
   .project-top{display:flex; align-items:baseline; justify-content:space-between; gap:var(--space-2); flex-wrap:wrap; margin-bottom:var(--space-1);}
-  .project-card h3{font-family:var(--font-heading); font-size:1.2rem; font-weight:700;}
+  .project-card h3{font-family:var(--font-display); font-size:1.25rem; font-weight:700;}
   .project-links{display:flex; gap:var(--space-2); flex-wrap:wrap;}
   .project-link{
-    font-size:0.85rem; font-weight:600; color:var(--color-accent); display:inline-flex; align-items:center; gap:4px;
+    font-size:0.85rem; font-weight:600; display:inline-flex; align-items:center; gap:5px;
     min-height:32px; border-bottom:1px solid transparent; transition:border-color 180ms ease;
   }
-  .project-link:hover{border-bottom-color:var(--color-accent);}
-  .project-card p{color:var(--color-muted); font-size:0.98rem; margin-bottom:var(--space-2);}
-  .project-goals{margin:var(--space-2) 0; padding-left:var(--space-3);}
+  .project-link:hover{border-bottom-color:currentColor;}
+  .project-link svg{width:13px; height:13px;}
+  .project-card p{color:var(--muted); font-size:0.98rem; margin-bottom:var(--space-2);}
+  .project-goals{margin:var(--space-2) 0; padding-left:0; list-style:none;}
   .project-goals li{
-    position:relative; font-size:0.92rem; color:var(--color-muted); margin-bottom:8px; padding-left:var(--space-2);
+    position:relative; font-size:0.92rem; color:var(--muted); margin-bottom:8px; padding-left:var(--space-2);
   }
-  .project-goals li::before{content:"—"; position:absolute; left:0; color:var(--color-border-strong);}
-  .project-goals li strong{color:var(--color-fg); font-weight:600;}
+  .project-goals li::before{
+    content:""; position:absolute; left:0; top:8px; width:6px; height:6px; border-radius:50%;
+    background:var(--dot-color, var(--ink));
+  }
+  .project-goals li strong{color:var(--ink); font-weight:600;}
   .stack-table{width:100%; border-collapse:collapse; margin:var(--space-2) 0; font-size:0.88rem;}
-  .stack-table td{padding:7px 10px; border-bottom:1px solid var(--color-border); vertical-align:top;}
-  .stack-table td:first-child{color:var(--color-muted); font-family:var(--font-mono); font-size:0.8rem; width:38%; white-space:nowrap;}
+  .stack-table td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  .stack-table td:first-child{color:var(--muted); font-size:0.85rem; width:38%; white-space:nowrap;}
   .stack-table tr:last-child td{border-bottom:none;}
   .project-tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:var(--space-2);}
   .project-tags span{
-    font-family:var(--font-mono); font-size:0.74rem; color:var(--color-secondary);
-    background:#F1F5F9; border:1px solid var(--color-border); padding:3px 9px; border-radius:5px;
+    font-family:var(--font-mono); font-size:0.74rem; color:var(--ink);
+    background:var(--tag-bg, #F1F0EC); border:1px solid var(--line); padding:3px 9px; border-radius:5px;
   }
   .req-list{margin-top:var(--space-2); padding-left:var(--space-3);}
-  .req-list li{font-size:0.9rem; color:var(--color-muted); margin-bottom:4px; list-style:disc;}
+  .req-list li{font-size:0.9rem; color:var(--muted); margin-bottom:4px; list-style:disc;}
 
-  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--space-3);}
-  .skill-col h3{font-family:var(--font-heading); font-size:0.95rem; font-weight:700; margin-bottom:var(--space-2); color:var(--color-primary);}
-  .skill-list{display:flex; flex-direction:column; gap:6px;}
-  .skill-list li{font-size:0.92rem; color:var(--color-muted); padding-left:14px; position:relative;}
-  .skill-list li::before{content:""; position:absolute; left:0; top:9px; width:5px; height:5px; background:var(--color-border-strong); border-radius:50%;}
+  /* category accents */
+  .cat-pink{border-top-color:var(--pink);} .cat-pink .project-link{color:var(--pink);} .cat-pink .section-tag,.cat-pink .kicker{color:var(--pink);}
+  .cat-amber{border-top-color:var(--amber);} .cat-amber .project-link{color:var(--amber);}
+  .cat-teal{border-top-color:var(--teal);} .cat-teal .project-link{color:var(--teal);}
+  .cat-indigo{border-top-color:var(--indigo);} .cat-indigo .project-link{color:var(--indigo);}
+  .cat-blue{border-top-color:var(--blue);} .cat-blue .project-link{color:var(--blue);}
 
-  .contact-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-3);}
-  .contact-row p{color:var(--color-muted); max-width:48ch;}
-  .email-link{
-    font-family:var(--font-mono); font-weight:600; font-size:1rem; color:var(--color-accent);
-    border-bottom:1px solid var(--color-border-strong); padding-bottom:2px; min-height:44px; display:inline-flex; align-items:center;
+  .cat-label{
+    display:inline-flex; align-items:center; gap:6px; font-size:0.78rem; font-weight:600;
+    margin-bottom:var(--space-2);
   }
-  .email-link:hover{border-bottom-color:var(--color-accent);}
+  .cat-label .dot{width:8px; height:8px; border-radius:50%;}
+  .cat-pink .cat-label{color:var(--pink);} .cat-pink .cat-label .dot{background:var(--pink);}
+  .cat-amber .cat-label{color:var(--amber);} .cat-amber .cat-label .dot{background:var(--amber);}
+  .cat-teal .cat-label{color:var(--teal);} .cat-teal .cat-label .dot{background:var(--teal);}
+  .cat-indigo .cat-label{color:var(--indigo);} .cat-indigo .cat-label .dot{background:var(--indigo);}
+  .cat-blue .cat-label{color:var(--blue);} .cat-blue .cat-label .dot{background:var(--blue);}
 
-  footer{padding:var(--space-4) 0; text-align:center; color:var(--color-muted); font-size:0.85rem;}
+  /* ── Skills ───────────────────────────────────── */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:var(--space-3);}
+  .skill-col{border-left:3px solid var(--col-color, var(--ink)); padding-left:14px;}
+  .skill-col h3{font-family:var(--font-display); font-size:0.98rem; font-weight:700; margin-bottom:var(--space-2); color:var(--col-color, var(--ink));}
+  .skill-list{display:flex; flex-direction:column; gap:6px;}
+  .skill-list li{font-size:0.92rem; color:var(--muted);}
+
+  /* ── Contact ──────────────────────────────────── */
+  .contact-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--space-3);}
+  .contact-row p{color:var(--muted); max-width:48ch;}
+  .email-link{
+    font-family:var(--font-mono); font-weight:600; font-size:1rem; color:var(--pink);
+    border-bottom:1px solid var(--pink); padding-bottom:2px; min-height:44px; display:inline-flex; align-items:center;
+  }
+  .email-link:hover{color:var(--ink); border-bottom-color:var(--ink);}
+
+  footer{padding:var(--space-4) 0; text-align:center; color:var(--muted); font-size:0.85rem;}
 
   [data-lang="en"]{display:none;}
   html[data-active="en"] [data-lang="th"]{display:none;}
@@ -147,7 +193,7 @@
   @media (max-width:760px){
     .nav-links{
       position:fixed; inset:60px 0 auto 0; flex-direction:column; align-items:flex-start;
-      background:var(--color-surface); border-bottom:1px solid var(--color-border);
+      background:var(--surface); border-bottom:1px solid var(--line);
       padding:var(--space-3); gap:var(--space-2); transform:translateY(-120%);
       transition:transform 220ms ease; max-height:70vh; overflow-y:auto;
     }
@@ -203,6 +249,25 @@
         </a>
         <a href="https://github.com/chakronwork" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
       </div>
+
+      <div>
+        <p class="stackbar-label" data-lang="th">ภาษาที่ใช้งานเป็นประจำ</p>
+        <p class="stackbar-label" data-lang="en">Languages I reach for most</p>
+        <div class="stackbar" role="img" aria-label="JavaScript, Python, PHP, Go, C/C++ usage mix">
+          <span style="width:34%; background:var(--amber);"></span>
+          <span style="width:22%; background:var(--blue);"></span>
+          <span style="width:18%; background:var(--indigo);"></span>
+          <span style="width:14%; background:var(--teal);"></span>
+          <span style="width:12%; background:var(--slate);"></span>
+        </div>
+        <div class="stackbar-legend">
+          <span class="chip"><span class="swatch" style="background:var(--amber);"></span>JavaScript</span>
+          <span class="chip"><span class="swatch" style="background:var(--blue);"></span>Python</span>
+          <span class="chip"><span class="swatch" style="background:var(--indigo);"></span>PHP</span>
+          <span class="chip"><span class="swatch" style="background:var(--teal);"></span>Go</span>
+          <span class="chip"><span class="swatch" style="background:var(--slate);"></span>C / C++</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -215,11 +280,50 @@
         <h2 data-lang="en">Selected Projects</h2>
       </div>
 
-      <article class="project-card">
+      <article class="project-card cat-pink">
+        <span class="cat-label"><span class="dot"></span><span data-lang="th">เว็บไซต์ลูกค้า</span><span data-lang="en">Client Website</span></span>
+        <div class="project-top">
+          <h3>LiMROS (ลิ้มรส)</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://limros-shop.vercel.app/" target="_blank" rel="noopener">
+              <span data-lang="th">Demo</span><span data-lang="en">Demo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
+            <a class="project-link" href="https://github.com/chakronwork/LiMROS" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
+          </div>
+        </div>
+        <p data-lang="th">
+          เว็บไซต์ร้านน้ำผลไม้สดที่พัฒนาให้ลูกค้าจริง ตั้งแต่ออกแบบ UX/UI เมนู แกลเลอรีภาพหน้าร้าน
+          ไปจนถึงระบบสั่งซื้อผ่านการโทรและช่องทางติดต่อ เน้นความเรียบง่าย โหลดไว และใช้งานได้ดีบนมือถือ
+        </p>
+        <p data-lang="en">
+          A live website for a fresh fruit-juice shop, built end-to-end for a real client — menu, shop
+          gallery, and click-to-call ordering, with a design system built around clarity, fast load
+          times, and mobile-first usability.
+        </p>
+        <table class="stack-table">
+          <tr><td data-lang="th">เทคโนโลยี</td><td data-lang="th">Next.js, TypeScript, Tailwind CSS</td>
+              <td data-lang="en">Tech Stack</td><td data-lang="en">Next.js, TypeScript, Tailwind CSS</td></tr>
+          <tr><td data-lang="th">การใช้งาน</td><td data-lang="th">เว็บไซต์ธุรกิจให้ลูกค้าจริง ใช้งานอยู่บนโดเมนจริง</td>
+              <td data-lang="en">Deployment</td><td data-lang="en">Live business site, deployed for a real client</td></tr>
+        </table>
+        <div class="project-tags">
+          <span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>Vercel</span>
+        </div>
+      </article>
+
+      <article class="project-card cat-amber">
+        <span class="cat-label"><span class="dot"></span><span data-lang="th">เครื่องมือเดสก์ท็อป</span><span data-lang="en">Desktop Tool</span></span>
         <div class="project-top">
           <h3>FirstPOS</h3>
           <div class="project-links">
-            <a class="project-link" href="https://github.com/chakronwork/First-POS" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/chakronwork/First-POS" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
           </div>
         </div>
         <p data-lang="th">
@@ -246,11 +350,15 @@
         </ul>
       </article>
 
-      <article class="project-card">
+      <article class="project-card cat-teal" style="--dot-color:var(--teal);">
+        <span class="cat-label"><span class="dot"></span><span data-lang="th">ระบบปฏิบัติการ</span><span data-lang="en">Operating System</span></span>
         <div class="project-top">
           <h3>FastOS</h3>
           <div class="project-links">
-            <a class="project-link" href="https://github.com/chakronwork/fastos" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/chakronwork/fastos" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
           </div>
         </div>
         <p data-lang="th">
@@ -265,12 +373,12 @@
           systems development skills.
         </p>
         <ul class="project-goals">
-          <li data-lang="th"><strong>เข้าใจ Linux อย่างลึกซึ้ง</strong> — compile kernel, สร้าง toolchain และประกอบ root filesystem เอง แทนการใช้ดิสโทรสำเร็จรูป</li>
-          <li data-lang="en"><strong>Deeply understand Linux</strong> — compile the kernel, build the toolchain, and assemble the root filesystem by hand rather than using a pre-built distro</li>
-          <li data-lang="th"><strong>ระบบที่เข้าใจได้ทุกส่วน</strong> — ทุกคอมโพเนนต์เลือกและ compile จาก source อย่างตั้งใจ</li>
-          <li data-lang="en"><strong>A fully understood system</strong> — every component deliberately chosen and compiled from source</li>
-          <li data-lang="th"><strong>รากฐานให้ต่อยอดได้</strong> — วางโครงสร้างให้ปรับแต่งและขยายฟีเจอร์ได้ในอนาคต</li>
-          <li data-lang="en"><strong>A foundation to build on</strong> — structured for future customization and extension</li>
+          <li data-lang="th"><strong>เข้าใจ Linux อย่างลึกซึ้ง</strong> compile kernel, สร้าง toolchain และประกอบ root filesystem เอง แทนการใช้ดิสโทรสำเร็จรูป</li>
+          <li data-lang="en"><strong>Deeply understand Linux</strong> compile the kernel, build the toolchain, and assemble the root filesystem by hand rather than using a pre-built distro</li>
+          <li data-lang="th"><strong>ระบบที่เข้าใจได้ทุกส่วน</strong> ทุกคอมโพเนนต์เลือกและ compile จาก source อย่างตั้งใจ</li>
+          <li data-lang="en"><strong>A fully understood system</strong> every component deliberately chosen and compiled from source</li>
+          <li data-lang="th"><strong>รากฐานให้ต่อยอดได้</strong> วางโครงสร้างให้ปรับแต่งและขยายฟีเจอร์ได้ในอนาคต</li>
+          <li data-lang="en"><strong>A foundation to build on</strong> structured for future customization and extension</li>
         </ul>
         <table class="stack-table">
           <tr><td data-lang="th">Kernel</td><td>Linux 6.6.21 (LTS)</td>
@@ -284,11 +392,15 @@
         </table>
       </article>
 
-      <article class="project-card">
+      <article class="project-card cat-indigo" style="--dot-color:var(--indigo);">
+        <span class="cat-label"><span class="dot"></span><span data-lang="th">Kernel ระดับต่ำ</span><span data-lang="en">Low-Level Kernel</span></span>
         <div class="project-top">
           <h3>firstOS</h3>
           <div class="project-links">
-            <a class="project-link" href="https://github.com/chakronwork/Firstkernel" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/chakronwork/Firstkernel" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
           </div>
         </div>
         <p data-lang="th">
@@ -302,10 +414,10 @@
           starting point for learning low-level OS development, later extended into the FastOS project.
         </p>
         <ul class="project-goals">
-          <li data-lang="th"><strong>เริ่มต้นจากศูนย์</strong> — เขียน entry point, boot sequence และ 32-bit protected mode เอง</li>
-          <li data-lang="en"><strong>Started from zero</strong> — hand-written entry point, boot sequence, and 32-bit protected mode setup</li>
-          <li data-lang="th"><strong>พื้นฐานสำหรับต่อยอด</strong> — วางโครงสร้างไว้สำหรับ GDT/IDT, memory management, paging และ interrupt handling ในอนาคต</li>
-          <li data-lang="en"><strong>Foundation to build on</strong> — structured for future GDT/IDT setup, memory management, paging, and interrupt handling</li>
+          <li data-lang="th"><strong>เริ่มต้นจากศูนย์</strong> เขียน entry point, boot sequence และ 32-bit protected mode เอง</li>
+          <li data-lang="en"><strong>Started from zero</strong> hand-written entry point, boot sequence, and 32-bit protected mode setup</li>
+          <li data-lang="th"><strong>พื้นฐานสำหรับต่อยอด</strong> วางโครงสร้างไว้สำหรับ GDT/IDT, memory management, paging และ interrupt handling ในอนาคต</li>
+          <li data-lang="en"><strong>Foundation to build on</strong> structured for future GDT/IDT setup, memory management, paging, and interrupt handling</li>
         </ul>
         <table class="stack-table">
           <tr><td data-lang="th">ภาษา</td><td>C, x86 Assembly</td>
@@ -319,14 +431,19 @@
         </table>
       </article>
 
-      <article class="project-card">
+      <article class="project-card cat-blue">
+        <span class="cat-label"><span class="dot"></span><span data-lang="th">อีคอมเมิร์ซ</span><span data-lang="en">E-Commerce</span></span>
         <div class="project-top">
           <h3 data-lang="th">Agri-Tech Marketplace</h3>
           <h3 data-lang="en">Agri-Tech Marketplace</h3>
           <div class="project-links">
-            <a class="project-link" href="https://github.com/chakronwork/schoo-agi-shop" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/chakronwork/schoo-agi-shop" target="_blank" rel="noopener">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
+            </a>
             <a class="project-link" href="https://agri-tech-marketplace-azure.vercel.app" target="_blank" rel="noopener">
-              <span data-lang="th">Demo</span><span data-lang="en">Demo</span> ↗
+              <span data-lang="th">Demo</span><span data-lang="en">Demo</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
             </a>
           </div>
         </div>
@@ -351,20 +468,20 @@
   <section id="skills">
     <div class="container">
       <div class="section-head">
-        <div class="section-tag" data-lang="th">ทักษะ</div>
-        <div class="section-tag" data-lang="en">Skills</div>
+        <div class="section-tag" style="color:var(--pink);" data-lang="th">ทักษะ</div>
+        <div class="section-tag" style="color:var(--pink);" data-lang="en">Skills</div>
         <h2 data-lang="th">ภาษาและเทคโนโลยี</h2>
         <h2 data-lang="en">Languages &amp; Technologies</h2>
       </div>
       <div class="skills-grid">
-        <div class="skill-col">
+        <div class="skill-col" style="--col-color:var(--amber);">
           <h3 data-lang="th">ภาษาโปรแกรม</h3>
           <h3 data-lang="en">Programming Languages</h3>
           <ul class="skill-list">
             <li>JavaScript</li><li>Python</li><li>PHP</li><li>Golang</li><li>C</li><li>C++</li>
           </ul>
         </div>
-        <div class="skill-col">
+        <div class="skill-col" style="--col-color:var(--pink);">
           <h3 data-lang="th">เฟรมเวิร์กและเว็บ</h3>
           <h3 data-lang="en">Frameworks &amp; Web</h3>
           <ul class="skill-list">
@@ -374,14 +491,14 @@
             <li data-lang="th">การพัฒนา Backend</li><li data-lang="en">Backend Development</li>
           </ul>
         </div>
-        <div class="skill-col">
+        <div class="skill-col" style="--col-color:var(--blue);">
           <h3 data-lang="th">ฐานข้อมูล</h3>
           <h3 data-lang="en">Database</h3>
           <ul class="skill-list">
             <li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>Firebase</li><li>NoSQL</li>
           </ul>
         </div>
-        <div class="skill-col">
+        <div class="skill-col" style="--col-color:var(--teal);">
           <h3 data-lang="th">เครื่องมือและ Version Control</h3>
           <h3 data-lang="en">Tools &amp; Version Control</h3>
           <ul class="skill-list">
@@ -395,8 +512,8 @@
   <section id="interests">
     <div class="container">
       <div class="section-head">
-        <div class="section-tag" data-lang="th">ความสนใจ</div>
-        <div class="section-tag" data-lang="en">Interests</div>
+        <div class="section-tag" style="color:var(--indigo);" data-lang="th">ความสนใจ</div>
+        <div class="section-tag" style="color:var(--indigo);" data-lang="en">Interests</div>
         <h2 data-lang="th">สิ่งที่สนใจ</h2>
         <h2 data-lang="en">Areas of Interest</h2>
       </div>
@@ -416,8 +533,8 @@
   <section id="contact">
     <div class="container">
       <div class="section-head">
-        <div class="section-tag" data-lang="th">ติดต่อ</div>
-        <div class="section-tag" data-lang="en">Contact</div>
+        <div class="section-tag" style="color:var(--blue);" data-lang="th">ติดต่อ</div>
+        <div class="section-tag" style="color:var(--blue);" data-lang="en">Contact</div>
         <h2 data-lang="th">ติดต่อผม</h2>
         <h2 data-lang="en">Get in Touch</h2>
       </div>
